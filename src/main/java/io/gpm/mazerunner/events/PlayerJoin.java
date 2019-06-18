@@ -13,6 +13,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /***
  * @author George
  * @since 18-Jun-19
@@ -31,6 +34,27 @@ public class PlayerJoin implements Listener {
         Location startLocation = new Location(world, x, y, z);
         player.teleport(startLocation);
 
+        //welcome title
+        List<String> welcomeTitle = new ArrayList<>();
+
+        {
+            welcomeTitle.add(ChatColor.GOLD + "[   " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "   ]");
+            welcomeTitle.add(ChatColor.GOLD + "[  " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "  ]");
+            welcomeTitle.add(ChatColor.GOLD + "[ " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + " ]");
+            welcomeTitle.add(ChatColor.GOLD + "[" + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "]");
+        }
+
+        List<String> welcomeSubtitle = new ArrayList<>();
+
+        {
+            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
+            welcomeSubtitle.add(ChatColor.DARK_RED + "To the MazeRunner");
+            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
+            welcomeSubtitle.add(ChatColor.DARK_RED + "To the MazeRunner");
+            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
+            welcomeSubtitle.add(ChatColor.DARK_RED + "To the MazeRunner");
+            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
+        }
 
         //update the max players and check
         GameInformation.currentPlayers.getAndIncrement();
@@ -40,7 +64,9 @@ public class PlayerJoin implements Listener {
 
         //the game logic, teleporting players and starting the loop
         if(GameInformation.currentPlayers.get() == GameInformation.MAX_PLAYERS) {
+
             Bukkit.getServer().getScheduler().runTask(MazeRunner.getInstance(), (Runnable) new GameLoop(loop.getLength(), loop.getDelay()));
+
             loop.setStarted(true);
             Bukkit.getServer().getWorld(world.getUID()).getPlayers().forEach(pl -> {
                 pl.sendMessage(ChatColor.translateAlternateColorCodes('&', MazeRunner.getInstance().getConfig().getString("game.start-message")));
