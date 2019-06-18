@@ -36,6 +36,8 @@ public class PlayerJoin implements Listener {
                 Location teleportLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.start-loc-x"),
                         MazeRunner.getInstance().getConfig().getInt("game.start-loc-y"),
                         MazeRunner.getInstance().getConfig().getInt("game.start-loc-z"));
+                pl.sendMessage(ChatColor.translateAlternateColorCodes('&', MazeRunner.getInstance().getConfig().getString("game.teleport-message")));
+                pl.teleport(teleportLocation);
             });
         }
     }
