@@ -16,8 +16,12 @@ public class GameLoop {
     private int loopTime = 6000; //5 minutes - think
     private BukkitTask runnable;
     private boolean gameEnded = false;
+    private static GameLoop get;
+
 
     public GameLoop(long length, long delay) {
+        get = this;
+
         this.length = length;
         this.delay = delay;
 
@@ -41,5 +45,33 @@ public class GameLoop {
                 }
             }
         }.runTaskTimer(MazeRunner.getInstance(), delay, length);
+    }
+
+    public long getLength() {
+        return length;
+    }
+
+    public long getDelay() {
+        return delay;
+    }
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public int getLoopTime() {
+        return loopTime;
+    }
+
+    public BukkitTask getRunnable() {
+        return runnable;
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
+    }
+
+    public static GameLoop get() {
+        return get;
     }
 }
