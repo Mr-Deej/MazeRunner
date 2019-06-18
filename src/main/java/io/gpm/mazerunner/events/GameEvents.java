@@ -91,6 +91,8 @@ public class GameEvents implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
+                            ChatColor.GREEN + GameInformation.points.get() + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
 
                 }
             }.runTaskTimer(MazeRunner.getInstance(), loop.getDelay(), loop.getLength());
@@ -102,7 +104,7 @@ public class GameEvents implements Listener {
         Player player = event.getPlayer();
         if(event.getRightClicked() instanceof Villager &&
                 event.getRightClicked().getCustomName().equalsIgnoreCase(MazeRunner.getInstance().getConfig().getString("game.banker-name"))) {
-
+            //todo cost mappings and bar update
         }
     }
 }
