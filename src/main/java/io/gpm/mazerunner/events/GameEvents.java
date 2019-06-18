@@ -110,8 +110,12 @@ public class GameEvents implements Listener {
         Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
         Entity skeletonStand = Bukkit.getWorld(world.getUID()).spawnEntity(skeletonSpawnLocation, EntityType.ARMOR_STAND);
 
-        EntityLocationNotifier zombieNotifier = new EntityLocationNotifier((ArmorStand) zombieStand, zombieSpawnLocation, "Zombies", null);
-        EntityLocationNotifier skeletonNotifier = new EntityLocationNotifier((ArmorStand) skeletonStand, skeletonSpawnLocation, "Skeletons", null);
+
+        ItemStack zombieHead = new ItemStack(Material.SKULL_ITEM);
+        ItemStack skeletonHead = new ItemStack(Material.SKULL_ITEM);
+
+        EntityLocationNotifier zombieNotifier = new EntityLocationNotifier((ArmorStand) zombieStand, zombieSpawnLocation, "Zombies", zombieHead);
+        EntityLocationNotifier skeletonNotifier = new EntityLocationNotifier((ArmorStand) skeletonStand, skeletonSpawnLocation, "Skeletons", skeletonHead);
 
 
         if(event.hasGameStarted()) {
