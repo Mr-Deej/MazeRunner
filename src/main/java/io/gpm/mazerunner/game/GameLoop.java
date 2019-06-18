@@ -74,4 +74,8 @@ public class GameLoop {
     public static GameLoop get() {
         return get;
     }
+
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
 }

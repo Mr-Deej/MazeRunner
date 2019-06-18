@@ -2,6 +2,8 @@ package io.gpm.mazerunner.events;
 
 import io.gpm.mazerunner.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
+import io.gpm.mazerunner.game.GameLoop;
+import io.gpm.mazerunner.utils.BossBar;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -17,6 +19,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
  */
 public class PlayerJoin implements Listener {
 
+    private GameLoop loop = GameLoop.get();
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -27,10 +31,17 @@ public class PlayerJoin implements Listener {
         Location startLocation = new Location(world, x, y, z);
         player.teleport(startLocation);
 
+
         //update the max players and check
         GameInformation.currentPlayers.getAndIncrement();
+        BossBar.set(player, ChatColor.GREEN +
+                "Waiting for more players to join " + ChatColor.GRAY + "(" + ChatColor.YELLOW +
+                GameInformation.currentPlayers.get() + ChatColor.GRAY + "/" + ChatColor.YELLOW + GameInformation.MAX_PLAYERS, 100);
 
+        //the game logic, teleporting players and starting the loop
         if(GameInformation.currentPlayers.get() == GameInformation.MAX_PLAYERS) {
+            Bukkit.getServer().getScheduler().runTask(MazeRunner.getInstance(), (Runnable) new GameLoop(loop.getLength(), loop.getDelay()));
+            loop.setStarted(true);
             Bukkit.getServer().getWorld(world.getUID()).getPlayers().forEach(pl -> {
                 pl.sendMessage(ChatColor.translateAlternateColorCodes('&', MazeRunner.getInstance().getConfig().getString("game.start-message")));
                 Location teleportLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.start-loc-x"),
