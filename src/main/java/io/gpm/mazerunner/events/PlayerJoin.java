@@ -57,7 +57,7 @@ public class PlayerJoin implements Listener {
             welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
         }
 
-        new AnimatedTitle(welcomeTitle, welcomeSubtitle, 10, 30, 10, 10, 10).send(player);
+        new AnimatedTitle(welcomeTitle, welcomeSubtitle, 10, 10, 10, 0, 10).send(player);
 
         //update the max players and check
         GameInformation.currentPlayers.getAndIncrement();

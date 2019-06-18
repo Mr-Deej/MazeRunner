@@ -1,7 +1,7 @@
 game:
-  pre-game-spawn-x: 0
-  pre-game-spawn-y: 0
-  pre-game-spawn-z: 0
+  pre-game-spawn-x: 100
+  pre-game-spawn-y: 100
+  pre-game-spawn-z: 100
   world: "World"
   max-players: 6
   starting-message: "&1Game is now starting!"
