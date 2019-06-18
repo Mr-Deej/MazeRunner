@@ -103,6 +103,13 @@ public class GameEvents implements Listener {
     @EventHandler
     public void gameRun(GameRunEvent event) {
         if(event.hasGameStarted()) {
+
+            //kill all entities in the world except players
+            Bukkit.getServer().getWorld(MazeRunner.getInstance().getConfig().getString("game.world")).getEntities().forEach(e -> {
+                if(!(e instanceof Player))
+                    e.remove();
+            });
+
             BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
                     ChatColor.GREEN + "0" + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
             new BukkitRunnable() {
