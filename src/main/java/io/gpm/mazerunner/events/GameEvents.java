@@ -6,10 +6,7 @@ import io.gpm.mazerunner.events.impl.GameRunEvent;
 import io.gpm.mazerunner.game.GameLoop;
 import io.gpm.mazerunner.utils.AnimatedTitle;
 import io.gpm.mazerunner.utils.BossBar;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -19,7 +16,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /***
  * @author George
@@ -28,6 +27,24 @@ import java.util.List;
 public class GameEvents implements Listener {
 
     private GameLoop loop = GameLoop.get();
+
+    //cost mappings for the game points system
+    private Map<Material, Double> costMappings;
+
+    {
+        costMappings = new HashMap<Material, Double>() {
+            {
+                put(Material.COAL, 10.0);
+                put(Material.IRON_INGOT, 25.0);
+                put(Material.DIAMOND, 100.0);
+                put(Material.EMERALD, 150.0);
+                put(Material.COAL_BLOCK, 90.0);
+                put(Material.IRON_BLOCK, 225.0);
+                put(Material.DIAMOND_BLOCK, 900.0);
+                put(Material.EMERALD_BLOCK, 1350.0);
+            }
+        };
+    }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
