@@ -57,6 +57,15 @@ public class BossBar {
         craftPlayer.sendPacket(dragonPacket);
     }
 
+    public static void removeBar(Player player) {
+        if(dragons.containsKey(player.getUniqueId())) {
+            Location location = player.getLocation();
+            PacketPlayOutEntityDestroy killPacket = new PacketPlayOutEntityDestroy(dragons.get(player.getUniqueId()).getId());
+            dragons.remove(player.getUniqueId());
+            (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(killPacket);
+        }
+    }
+
     public static void setForAll(String text, float health) {
         Bukkit.getOnlinePlayers().forEach(pl -> set(pl, text, health));
     }
