@@ -69,7 +69,7 @@ public class BossBar {
     }
 
     public static void removeEveryonesBar() {
-        Bukkit.getOnlinePlayers().forEach(pl -> removeBar(pl));
+        Bukkit.getOnlinePlayers().forEach(BossBar::removeBar);
     }
 
     public static void setForAll(String text, float health) {
@@ -87,7 +87,7 @@ public class BossBar {
     }
 
     public static void teleportEveryonesbar() {
-        Bukkit.getOnlinePlayers().forEach(pl -> teleportBar(pl));
+        Bukkit.getOnlinePlayers().forEach(BossBar::teleportBar);
     }
 
     public static void updateBar(Player player, String text, float health) {
