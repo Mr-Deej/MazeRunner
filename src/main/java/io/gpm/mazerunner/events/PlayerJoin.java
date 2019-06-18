@@ -15,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /***
@@ -36,28 +37,25 @@ public class PlayerJoin implements Listener {
         player.teleport(startLocation);
 
         //welcome title
-        List<String> welcomeTitle = new ArrayList<>();
+        List<String> welcomeTitle = Arrays.asList(
+            ChatColor.GOLD + "[   " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "   ]",
+            ChatColor.GOLD + "[  " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "  ]",
+            ChatColor.GOLD + "[ " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + " ]",
+            ChatColor.GOLD + "[" + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "]"
+        );
 
-        {
-            welcomeTitle.add(ChatColor.GOLD + "[   " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "   ]");
-            welcomeTitle.add(ChatColor.GOLD + "[  " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "  ]");
-            welcomeTitle.add(ChatColor.GOLD + "[ " + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + " ]");
-            welcomeTitle.add(ChatColor.GOLD + "[" + ChatColor.LIGHT_PURPLE + "Welcome!" + ChatColor.GOLD + "]");
-        }
+        List<String> welcomeSubtitle = Arrays.asList(
+                ChatColor.RED + "To the MazeRunner",
+                ChatColor.DARK_RED + "To the MazeRunner",
+                ChatColor.RED + "To the MazeRunner",
+                ChatColor.DARK_RED + "To the MazeRunner",
+                ChatColor.RED + "To the MazeRunner",
+                ChatColor.DARK_RED + "To the MazeRunner",
+                ChatColor.RED + "To the MazeRunner"
+        );
 
-        List<String> welcomeSubtitle = new ArrayList<>();
 
-        {
-            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
-            welcomeSubtitle.add(ChatColor.DARK_RED + "To the MazeRunner");
-            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
-            welcomeSubtitle.add(ChatColor.DARK_RED + "To the MazeRunner");
-            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
-            welcomeSubtitle.add(ChatColor.DARK_RED + "To the MazeRunner");
-            welcomeSubtitle.add(ChatColor.RED + "To the MazeRunner");
-        }
-
-        new AnimatedTitle(welcomeTitle, welcomeSubtitle, 10, 10, 10, 0, 10).send(player);
+        new AnimatedTitle(welcomeTitle, welcomeSubtitle, 10, 10, 10, 0, 5).send(player);
 
         //update the max players and check
         GameInformation.currentPlayers.getAndIncrement();
