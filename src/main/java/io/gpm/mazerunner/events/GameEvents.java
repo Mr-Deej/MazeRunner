@@ -13,6 +13,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.Arrays;
@@ -84,6 +85,12 @@ public class GameEvents implements Listener {
     public void gameRun(GameRunEvent event) {
         if(event.hasGameStarted()) {
 
+            BossBar.updateEveryonesBar(ChatColor.GREEN + "Current points: " + ChatColor.YELLOW + "", 100);
         }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractAtEntityEvent event) {
+
     }
 }
