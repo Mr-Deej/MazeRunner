@@ -4,3 +4,8 @@ game:
   pre-game-spawn-z: 0
   world: "World"
   max-players: 6
+  starting-message: "&1Game is now starting!"
+  teleport-message: "&4Teleporting players to start location"
+  start-loc-x: 0
+  start-loc-y: 0
+  start-loc-z: 0

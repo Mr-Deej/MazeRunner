@@ -1,7 +1,9 @@
 package io.gpm.mazerunner.events;
 
+import io.gpm.mazerunner.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -24,5 +26,17 @@ public class PlayerJoin implements Listener {
         World world = Bukkit.getWorld(MazeRunner.getInstance().getConfig().getString("game.world"));
         Location startLocation = new Location(world, x, y, z);
         player.teleport(startLocation);
+
+        //update the max players and check
+        GameInformation.currentPlayers.getAndIncrement();
+
+        if(GameInformation.currentPlayers.get() == GameInformation.MAX_PLAYERS) {
+            Bukkit.getServer().getWorld(world.getUID()).getPlayers().forEach(pl -> {
+                pl.sendMessage(ChatColor.translateAlternateColorCodes('&', MazeRunner.getInstance().getConfig().getString("game.start-message")));
+                Location teleportLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.start-loc-x"),
+                        MazeRunner.getInstance().getConfig().getInt("game.start-loc-y"),
+                        MazeRunner.getInstance().getConfig().getInt("game.start-loc-z"));
+            });
+        }
     }
 }
