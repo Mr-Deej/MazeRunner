@@ -36,9 +36,6 @@ public class GameLoop {
 
                     if(loopTime == 0) {
                         gameEnded = true;
-                        //todo send the end game stuff
-
-
                     }
                 }
 
