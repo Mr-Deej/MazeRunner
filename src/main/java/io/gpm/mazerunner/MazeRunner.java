@@ -1,6 +1,6 @@
 package io.gpm.mazerunner;
 
-import io.gpm.mazerunner.events.PlayerJoin;
+import io.gpm.mazerunner.events.GameEvents;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.Stream;
@@ -18,7 +18,7 @@ public class MazeRunner extends JavaPlugin {
         instance = this;
 
         Stream.of(
-                new PlayerJoin()
+                new GameEvents()
         ).forEach(l -> getServer().getPluginManager().registerEvents(l,this));
     }
 

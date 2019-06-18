@@ -22,7 +22,7 @@ import java.util.List;
  * @author George
  * @since 18-Jun-19
  */
-public class PlayerJoin implements Listener {
+public class GameEvents implements Listener {
 
     private GameLoop loop = GameLoop.get();
 
