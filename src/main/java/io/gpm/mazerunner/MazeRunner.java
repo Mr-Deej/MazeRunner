@@ -1,5 +1,6 @@
 package io.gpm.mazerunner;
 
+import io.gpm.mazerunner.events.CancelledEvents;
 import io.gpm.mazerunner.events.GameEvents;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,7 +19,8 @@ public class MazeRunner extends JavaPlugin {
         instance = this;
 
         Stream.of(
-                new GameEvents()
+                new GameEvents(),
+                new CancelledEvents()
         ).forEach(l -> getServer().getPluginManager().registerEvents(l,this));
     }
 
