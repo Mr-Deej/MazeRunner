@@ -15,3 +15,4 @@ game:
   skeleton-spawn-loc-x: 0
   skeleton-spawn-loc-y: 0
   skeleton-spawn-loc-z: 0
+  required-points: 500
