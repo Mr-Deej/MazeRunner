@@ -37,7 +37,7 @@ public class EntitySpawner {
         spin();
     }
 
-    public void spin() {
+    private void spin() {
         while (rotation != 0) {
             stand.getLocation().setPitch(--rotation);
             if(rotation == 0)
