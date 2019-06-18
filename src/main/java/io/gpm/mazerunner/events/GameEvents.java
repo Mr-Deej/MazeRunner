@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
@@ -98,6 +99,10 @@ public class GameEvents implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractAtEntityEvent event) {
+        Player player = event.getPlayer();
+        if(event.getRightClicked() instanceof Villager &&
+                event.getRightClicked().getCustomName().equalsIgnoreCase(MazeRunner.getInstance().getConfig().getString("game.banker-name"))) {
 
+        }
     }
 }
