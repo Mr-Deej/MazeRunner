@@ -87,4 +87,30 @@ public class BossBar {
     public static void teleportEveryonesbar() {
         Bukkit.getOnlinePlayers().forEach(pl -> teleportBar(pl));
     }
+
+    public static void updateBar(Player player, String text, float health) {
+        if(dragons.containsKey(player.getUniqueId())) {
+            DataWatcher watcher = new DataWatcher(null);
+            watcher.a(0, (byte) 0x20);
+
+            if(health != -1) watcher.a(6, (health * 200) / 100);
+
+            if(text != null) {
+                watcher.a(10, text);
+                watcher.a(2, text);
+            }
+
+            watcher.a(11, (byte) 1);
+            watcher.a(3, (byte) 1);
+
+            //packet handling
+            PacketPlayOutEntityMetadata dataPacket = new PacketPlayOutEntityMetadata(dragons.get(player.getUniqueId()).getId(),
+                    watcher, true);
+            ((CraftPlayer)player).getHandle().playerConnection.sendPacket(dataPacket);
+        }
+    }
+
+    public static void updateEveryonesBar(String text, float health) {
+        Bukkit.getOnlinePlayers().forEach(pl -> updateBar(pl, text, health));
+    }
 }
