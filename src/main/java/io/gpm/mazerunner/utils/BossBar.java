@@ -9,7 +9,9 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /***
@@ -112,5 +114,17 @@ public class BossBar {
 
     public static void updateEveryonesBar(String text, float health) {
         Bukkit.getOnlinePlayers().forEach(pl -> updateBar(pl, text, health));
+    }
+
+    public static Map<String, EntityEnderDragon> getDragons() {
+        return dragons;
+    }
+
+    public static Set<String> getPlayersWithBar() {
+        Set<String> playerSet = new HashSet<>();
+
+        for(Map.Entry<String, EntityEnderDragon> entry : dragons.entrySet())
+            playerSet.add(entry.getKey());
+        return playerSet;
     }
 }
