@@ -2,6 +2,7 @@ package io.gpm.mazerunner.utils;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -36,5 +37,9 @@ public class Title {
         (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(titlePacket);
         (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(subtitlePacket);
         (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(length);
+    }
+
+    public void sendToAll() {
+        Bukkit.getServer().getOnlinePlayers().forEach(this::send);
     }
 }
