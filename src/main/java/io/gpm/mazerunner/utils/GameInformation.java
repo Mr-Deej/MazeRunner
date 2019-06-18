@@ -1,4 +1,6 @@
-package io.gpm.mazerunner;
+package io.gpm.mazerunner.utils;
+
+import io.gpm.mazerunner.MazeRunner;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

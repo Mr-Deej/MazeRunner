@@ -1,6 +1,6 @@
 package io.gpm.mazerunner.events;
 
-import io.gpm.mazerunner.GameInformation;
+import io.gpm.mazerunner.utils.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.events.impl.GameRunEvent;
 import io.gpm.mazerunner.game.GameLoop;

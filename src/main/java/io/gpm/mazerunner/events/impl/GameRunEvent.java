@@ -1,6 +1,5 @@
 package io.gpm.mazerunner.events.impl;
 
-import io.gpm.mazerunner.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.game.GameLoop;
 import org.bukkit.Bukkit;
