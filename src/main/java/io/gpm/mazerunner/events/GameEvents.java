@@ -1,5 +1,6 @@
 package io.gpm.mazerunner.events;
 
+import io.gpm.mazerunner.impl.EntityLocationNotifier;
 import io.gpm.mazerunner.utils.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.events.impl.GameRunEvent;
@@ -7,8 +8,7 @@ import io.gpm.mazerunner.game.GameLoop;
 import io.gpm.mazerunner.utils.AnimatedTitle;
 import io.gpm.mazerunner.utils.BossBar;
 import org.bukkit.*;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
@@ -99,6 +99,21 @@ public class GameEvents implements Listener {
 
     @EventHandler
     public void gameRun(GameRunEvent event) {
+
+        Location zombieSpawnLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-z"));
+        Location skeletonSpawnLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-z"));
+
+        Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
+        Entity skeletonStand = Bukkit.getWorld(world.getUID()).spawnEntity(skeletonSpawnLocation, EntityType.ARMOR_STAND);
+
+        EntityLocationNotifier zombieNotifier = new EntityLocationNotifier((ArmorStand) zombieStand, zombieSpawnLocation, "Zombies", null);
+        EntityLocationNotifier skeletonNotifier = new EntityLocationNotifier((ArmorStand) skeletonStand, skeletonSpawnLocation, "Skeletons", null);
+
+
         if(event.hasGameStarted()) {
 
             //kill all entities in the world except players
@@ -128,6 +143,8 @@ public class GameEvents implements Listener {
                 public void run() {
                     BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
                             ChatColor.GREEN + GameInformation.points.get() + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
+
+                    //spawn the zombies
 
                     if(event.hasGotEnoughPoints()) {
                         event.setCancelled(true);
