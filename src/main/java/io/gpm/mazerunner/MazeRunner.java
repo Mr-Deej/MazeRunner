@@ -8,13 +8,19 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class MazeRunner extends JavaPlugin {
 
+    private static MazeRunner instance;
+
     @Override
     public void onEnable() {
-
+        instance = this;
     }
 
     @Override
     public void onDisable() {
+        instance = this;
+    }
 
+    public static MazeRunner getInstance() {
+        return instance;
     }
 }
