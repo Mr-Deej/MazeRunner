@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
  * @author George
  * @since 19-Jun-19
  */
-public class EntitySpawner {
+public class EntityLocationNotifier {
 
     private GameLoop loop = GameLoop.get();
 
@@ -22,7 +22,7 @@ public class EntitySpawner {
     private ItemStack head;
     private float rotation = 360;
 
-    public EntitySpawner(ArmorStand stand, Location location, String name, ItemStack head) {
+    public EntityLocationNotifier(ArmorStand stand, Location location, String name, ItemStack head) {
         this.stand = stand;
         this.location = location;
         this.name = name;
