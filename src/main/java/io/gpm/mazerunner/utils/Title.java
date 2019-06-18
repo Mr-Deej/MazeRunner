@@ -26,7 +26,7 @@ public class Title {
 
     public void send(Player player) {
         IChatBaseComponent titleCb = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
-        IChatBaseComponent subtitleCb = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
+        IChatBaseComponent subtitleCb = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
 
         //packet handling
         PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, titleCb);
