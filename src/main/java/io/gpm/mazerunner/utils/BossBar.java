@@ -66,6 +66,10 @@ public class BossBar {
         }
     }
 
+    public static void removeEveryonesBar() {
+        Bukkit.getOnlinePlayers().forEach(pl -> removeBar(pl));
+    }
+
     public static void setForAll(String text, float health) {
         Bukkit.getOnlinePlayers().forEach(pl -> set(pl, text, health));
     }
