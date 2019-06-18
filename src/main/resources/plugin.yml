@@ -1,15 +1,6 @@
 name: MazeRunner
 version: ${project.version}
-main: Main
+main: io.gpm.mazerunner.MazeRunner
 load: STARTUP
 authors: [RapidTheNerd]
 description: Main game
-commands:
-  resetteams:
-    description: reset the teams
-  currentteams:
-    description: gets all the players in the current teams
-  hg:
-    description: spawns the hologram for the harvester
-  scoret:
-    description: spawns the hologram for the harvester
