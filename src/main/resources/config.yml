@@ -9,3 +9,9 @@ game:
   start-loc-x: 0
   start-loc-y: 0
   start-loc-z: 0
+  zombie-spawn-loc-x: 0
+  zombie-spawn-loc-y: 0
+  zombie-spawn-loc-z: 0
+  skeleton-spawn-loc-x: 0
+  skeleton-spawn-loc-y: 0
+  skeleton-spawn-loc-z: 0
