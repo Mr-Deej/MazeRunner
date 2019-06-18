@@ -11,6 +11,7 @@ import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -100,6 +101,7 @@ public class GameEvents implements Listener {
     @EventHandler
     public void gameRun(GameRunEvent event) {
 
+        //handle everything for the zombie spawning and the rotating armorstand
         Location zombieSpawnLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-x"),
                 MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-y"),
                 MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-z"));
@@ -111,8 +113,8 @@ public class GameEvents implements Listener {
         Entity skeletonStand = Bukkit.getWorld(world.getUID()).spawnEntity(skeletonSpawnLocation, EntityType.ARMOR_STAND);
 
 
-        ItemStack zombieHead = new ItemStack(Material.SKULL_ITEM);
-        ItemStack skeletonHead = new ItemStack(Material.SKULL_ITEM);
+        ItemStack zombieHead = new ItemStack(Material.SKULL_ITEM); //todo replace the head with a zombie head
+        ItemStack skeletonHead = new ItemStack(Material.SKULL_ITEM); //this by default is a skeleton head - i think
 
         EntityLocationNotifier zombieNotifier = new EntityLocationNotifier((ArmorStand) zombieStand, zombieSpawnLocation, "Zombies", zombieHead);
         EntityLocationNotifier skeletonNotifier = new EntityLocationNotifier((ArmorStand) skeletonStand, skeletonSpawnLocation, "Skeletons", skeletonHead);
@@ -165,6 +167,8 @@ public class GameEvents implements Listener {
         Player player = event.getPlayer();
         if(event.getRightClicked() instanceof Villager &&
                 event.getRightClicked().getCustomName().equalsIgnoreCase(MazeRunner.getInstance().getConfig().getString("game.banker-name"))) {
+
+            //cost mappings and such
             Arrays.stream(player.getInventory().getContents()).forEach(item -> {
                 if(costMappings.containsKey(item.getType())) {
                     item.setAmount(0);
@@ -172,5 +176,18 @@ public class GameEvents implements Listener {
                 }
             });
         }
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+
+        player.getInventory().clear();
+
+        player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+        player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+        player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+        player.getInventory().setItemInHand(new ItemStack(Material.STONE_SWORD));
     }
 }
