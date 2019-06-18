@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -84,8 +85,14 @@ public class GameEvents implements Listener {
     @EventHandler
     public void gameRun(GameRunEvent event) {
         if(event.hasGameStarted()) {
+            BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
+                    ChatColor.GREEN + "0" + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
 
-            BossBar.updateEveryonesBar(ChatColor.GREEN + "Current points: " + ChatColor.YELLOW + "", 100);
+                }
+            }.runTaskTimer(MazeRunner.getInstance(), loop.getDelay(), loop.getLength());
         }
     }
 
