@@ -1,6 +1,9 @@
 package io.gpm.mazerunner.game;
 
 import io.gpm.mazerunner.MazeRunner;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -41,7 +44,14 @@ public class GameLoop {
 
                 if(gameEnded) {
                     cancel();
-                    //todo teleport players
+                    int x = MazeRunner.getInstance().getConfig().getInt("game.end-loc-x"),
+                            y = MazeRunner.getInstance().getConfig().getInt("game.end-loc-y"),
+                            z = MazeRunner.getInstance().getConfig().getInt("game.end-loc-z");
+                    World world = Bukkit.getWorld(MazeRunner.getInstance().getConfig().getString("game.world"));
+                    Location endLocation = new Location(world, x, y, z);
+                    Bukkit.getServer().getWorld(world.getUID()).getPlayers().forEach(pl -> {
+                        pl.teleport(endLocation);
+                    });
                 }
             }
         }.runTaskTimer(MazeRunner.getInstance(), delay, length);
