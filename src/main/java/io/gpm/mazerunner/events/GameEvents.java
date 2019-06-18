@@ -2,7 +2,7 @@ package io.gpm.mazerunner.events;
 
 import io.gpm.mazerunner.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
-import io.gpm.mazerunner.events.impl.GameRuntEvent;
+import io.gpm.mazerunner.events.impl.GameRunEvent;
 import io.gpm.mazerunner.game.GameLoop;
 import io.gpm.mazerunner.utils.AnimatedTitle;
 import io.gpm.mazerunner.utils.BossBar;
@@ -15,7 +15,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -82,7 +81,7 @@ public class GameEvents implements Listener {
     }
 
     @EventHandler
-    public void gameRun(GameRuntEvent event) {
+    public void gameRun(GameRunEvent event) {
         if(event.hasGameStarted()) {
 
         }
