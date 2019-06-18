@@ -31,19 +31,14 @@ public class GameEvents implements Listener {
     private World world = Bukkit.getWorld(MazeRunner.getInstance().getConfig().getString("game.world"));
 
     //cost mappings for the game points system
-    private Map<Material, Double> costMappings;
+    private Map<Material, Integer> costMappings;
 
     {
-        costMappings = new HashMap<Material, Double>() {
+        costMappings = new HashMap<Material, Integer>() {
             {
-                put(Material.COAL, 10.0);
-                put(Material.IRON_INGOT, 25.0);
-                put(Material.DIAMOND, 100.0);
-                put(Material.EMERALD, 150.0);
-                put(Material.COAL_BLOCK, 90.0);
-                put(Material.IRON_BLOCK, 225.0);
-                put(Material.DIAMOND_BLOCK, 900.0);
-                put(Material.EMERALD_BLOCK, 1350.0);
+                put(Material.COAL, 10);
+                put(Material.IRON_INGOT, 25);
+                put(Material.DIAMOND, 100);
             }
         };
     }
@@ -144,7 +139,12 @@ public class GameEvents implements Listener {
         Player player = event.getPlayer();
         if(event.getRightClicked() instanceof Villager &&
                 event.getRightClicked().getCustomName().equalsIgnoreCase(MazeRunner.getInstance().getConfig().getString("game.banker-name"))) {
-            //todo cost mappings and bar update
+            Arrays.stream(player.getInventory().getContents()).forEach(item -> {
+                if(costMappings.containsKey(item.getType())) {
+                    item.setAmount(0);
+                    GameInformation.points.addAndGet(costMappings.get(item.getType()));
+                }
+            });
         }
     }
 }
