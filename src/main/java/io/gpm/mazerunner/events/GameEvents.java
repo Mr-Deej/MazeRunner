@@ -2,6 +2,7 @@ package io.gpm.mazerunner.events;
 
 import io.gpm.mazerunner.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
+import io.gpm.mazerunner.events.impl.GameRuntEvent;
 import io.gpm.mazerunner.game.GameLoop;
 import io.gpm.mazerunner.utils.AnimatedTitle;
 import io.gpm.mazerunner.utils.BossBar;
@@ -77,6 +78,13 @@ public class GameEvents implements Listener {
                 pl.sendMessage(ChatColor.translateAlternateColorCodes('&', MazeRunner.getInstance().getConfig().getString("game.teleport-message")));
                 pl.teleport(teleportLocation);
             });
+        }
+    }
+
+    @EventHandler
+    public void gameRun(GameRuntEvent event) {
+        if(event.hasGameStarted()) {
+
         }
     }
 }
