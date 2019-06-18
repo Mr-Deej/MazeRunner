@@ -1,11 +1,13 @@
 package io.gpm.mazerunner.utils;
 
+import io.gpm.mazerunner.MazeRunner;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -39,5 +41,18 @@ public class BossBar {
         watcher.a(2, text);
         watcher.a(11, (byte) 1);
         watcher.a(3, (byte) 1);
+
+        //assign the data watcher to the entity
+        try {
+            Field t = PacketPlayOutSpawnEntityLiving.class.getDeclaredField("l");
+            t.setAccessible(true);
+            t.set(dragonPacket, watcher);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            MazeRunner.getInstance().getLogger().severe("Could not set the datawatcher to the dragon packet!");
+        }
+
+        dragons.put(player.getName(), dragon);
+        craftPlayer.sendPacket(dragonPacket);
     }
 }
