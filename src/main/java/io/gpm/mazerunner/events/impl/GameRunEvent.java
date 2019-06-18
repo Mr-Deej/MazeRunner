@@ -2,8 +2,7 @@ package io.gpm.mazerunner.events.impl;
 
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.game.GameLoop;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import io.gpm.mazerunner.utils.GameInformation;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -26,12 +25,8 @@ public class GameRunEvent extends Event implements Cancellable {
         return loop.isGameEnded();
     }
 
-    public int hasGotEnoughPoints() {
-        return MazeRunner.getInstance().getConfig().getInt("game.required-points");
-    }
-
-    public void teleportToEnd(Location location) {
-        Bukkit.getServer().getWorld(location.getWorld().getUID()).getPlayers().forEach(p -> p.teleport(location));
+    public boolean hasGotEnoughPoints() {
+        return GameInformation.points.get() == GameInformation.MAX_POINTS;
     }
 
     @Override

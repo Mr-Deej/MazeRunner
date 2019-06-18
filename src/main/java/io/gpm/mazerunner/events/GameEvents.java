@@ -129,6 +129,9 @@ public class GameEvents implements Listener {
                     BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
                             ChatColor.GREEN + GameInformation.points.get() + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
 
+                    if(event.hasGotEnoughPoints())
+                        event.setCancelled(true);
+
                 }
             }.runTaskTimer(MazeRunner.getInstance(), loop.getDelay(), loop.getLength());
         }
