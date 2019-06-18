@@ -2,6 +2,7 @@ package io.gpm.mazerunner.utils;
 
 import io.gpm.mazerunner.MazeRunner;
 import net.minecraft.server.v1_8_R3.*;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -54,5 +55,9 @@ public class BossBar {
 
         dragons.put(player.getName(), dragon);
         craftPlayer.sendPacket(dragonPacket);
+    }
+
+    public static void setForAll(String text, float health) {
+        Bukkit.getOnlinePlayers().forEach(pl -> set(pl, text, health));
     }
 }
