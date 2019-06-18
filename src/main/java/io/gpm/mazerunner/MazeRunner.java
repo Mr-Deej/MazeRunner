@@ -1,6 +1,9 @@
 package io.gpm.mazerunner;
 
+import io.gpm.mazerunner.events.PlayerJoin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.stream.Stream;
 
 /***
  * @author George
@@ -13,6 +16,10 @@ public class MazeRunner extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+
+        Stream.of(
+                new PlayerJoin()
+        ).forEach(l -> getServer().getPluginManager().registerEvents(l,this));
     }
 
     @Override
