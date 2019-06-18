@@ -73,4 +73,18 @@ public class BossBar {
     public static void setForAll(String text, float health) {
         Bukkit.getOnlinePlayers().forEach(pl -> set(pl, text, health));
     }
+
+    public static void teleportBar(Player player) {
+        if(dragons.containsKey(player.getUniqueId())) {
+            Location location = player.getLocation();
+            PacketPlayOutEntityTeleport teleportPacket = new PacketPlayOutEntityTeleport(dragons.get(player.getName()).getId(),
+                    (int) location.getX() * 32, (int) location.getY() - 100 * 32, (int) location.getZ() * 32,
+                    (byte) ((int) location.getYaw() * 256 / 360), (byte) ((int) location.getPitch() * 256 / 360), false);
+            ((CraftPlayer)player).getHandle().playerConnection.sendPacket(teleportPacket);
+        }
+    }
+
+    public static void teleportEveryonesbar() {
+        Bukkit.getOnlinePlayers().forEach(pl -> teleportBar(pl));
+    }
 }
