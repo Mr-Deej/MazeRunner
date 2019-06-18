@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class GameEvents implements Listener {
 
     private GameLoop loop = GameLoop.get();
+    private World world = Bukkit.getWorld(MazeRunner.getInstance().getConfig().getString("game.world"));
 
     //cost mappings for the game points system
     private Map<Material, Double> costMappings;
@@ -52,7 +54,7 @@ public class GameEvents implements Listener {
         int x = MazeRunner.getInstance().getConfig().getInt("game.pre-spawn-x"),
                 y = MazeRunner.getInstance().getConfig().getInt("game.pre-spawn-y"),
                 z = MazeRunner.getInstance().getConfig().getInt("game.pre-spawn-z");
-        World world = Bukkit.getWorld(MazeRunner.getInstance().getConfig().getString("game.world"));
+
         Location startLocation = new Location(world, x, y, z);
         player.teleport(startLocation);
 
@@ -105,9 +107,23 @@ public class GameEvents implements Listener {
         if(event.hasGameStarted()) {
 
             //kill all entities in the world except players
-            Bukkit.getServer().getWorld(MazeRunner.getInstance().getConfig().getString("game.world")).getEntities().forEach(e -> {
+            Bukkit.getServer().getWorld(world.getUID()).getEntities().forEach(e -> {
                 if(!(e instanceof Player))
                     e.remove();
+            });
+
+            //player armor
+
+            Bukkit.getServer().getWorld(world.getUID()).getPlayers().forEach(pl -> {
+
+                pl.getInventory().clear();
+
+                pl.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+                pl.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+                pl.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+                pl.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+                pl.getInventory().setItemInHand(new ItemStack(Material.STONE_SWORD));
+
             });
 
             BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
