@@ -2,6 +2,7 @@ package io.gpm.mazerunner.events.impl;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -33,5 +34,13 @@ public class GameWinEvent extends Event implements Cancellable {
 
     public void teleport(Location location) {
         Bukkit.getServer().getWorld(location.getWorld().getUID()).getPlayers().forEach(pl -> pl.teleport(location));
+    }
+
+    public void killAllMobs(World world) {
+        Bukkit.getServer().getWorld(world.getUID()).getEntities().forEach(e -> {
+            if(!(e instanceof Player))
+                e.remove();
+
+        });
     }
 }

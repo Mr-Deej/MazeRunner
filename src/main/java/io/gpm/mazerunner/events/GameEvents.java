@@ -167,10 +167,8 @@ public class GameEvents implements Listener {
                         zombieNotifier.despawn();
                         skeletonNotifier.despawn();
 
-                        Bukkit.getServer().getWorld(world.getUID()).getEntities().forEach(e -> {
-                            if(!(e instanceof Player))
-                                e.remove();
-                        });
+                        //game win event
+
                     }
 
                 }
