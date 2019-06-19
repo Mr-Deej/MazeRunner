@@ -155,8 +155,10 @@ public class GameEvents implements Listener {
                             ChatColor.GREEN + GameInformation.points.get() + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
 
                     //spawn the zombies and skeleton
-                    EntitySpawner zombies = new EntitySpawner();
-
+                    EntitySpawner.setAmount(MazeRunner.getInstance().getConfig().getInt("mob-count"));
+                    EntitySpawner.setType(EntityType.ZOMBIE);
+                    EntitySpawner.setLocation(zombieSpawnLocation);
+                    EntitySpawner.spawn();
 
                     if(event.hasGotEnoughPoints()) {
                         event.setCancelled(true);
