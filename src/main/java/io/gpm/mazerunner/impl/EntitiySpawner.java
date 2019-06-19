@@ -1,8 +1,11 @@
 package io.gpm.mazerunner.impl;
 
+import io.gpm.mazerunner.game.GameLoop;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDeathEvent;
 
 /***
  * @author George
@@ -10,12 +13,13 @@ import org.bukkit.entity.EntityType;
  */
 public class EntitiySpawner {
 
-    private EntityType type;
+    private GameLoop loop = GameLoop.get();
+    private static EntityType type;
     private Location location;
     private int amount;
 
     public EntitiySpawner(EntityType type, Location location, int amount) {
-        this.type = type;
+        type = type;
         this.location = location;
         this.amount = amount;
     }
@@ -24,6 +28,12 @@ public class EntitiySpawner {
     public void spawn() {
         for(int i = 0; i < amount + 1; ++i) {
             Bukkit.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, type);
+        }
+    }
+
+    public static void onDeath(EntityDeathEvent event) {
+        if(event.getEntity().getType() == type && !(event.getEntity() instanceof Player)) {
+
         }
     }
 }
