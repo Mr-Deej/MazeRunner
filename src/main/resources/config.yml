@@ -19,6 +19,6 @@ game:
   banker-name: "&b&lBanker!"
   mob-repsawn-time: 10.5L
   mob-count: 3
-  win-location-x: 0
-  win-location-y: 0
-  win-location-z: 0
+  win-loc-x: 0
+  win-loc-y: 0
+  win-loc-z: 0

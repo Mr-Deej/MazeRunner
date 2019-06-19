@@ -112,6 +112,10 @@ public class GameEvents implements Listener {
                 MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-y"),
                 MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-z"));
 
+        Location winLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.win-loc-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.win-loc-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.win-loc-z"));
+
         Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
         Entity skeletonStand = Bukkit.getWorld(world.getUID()).spawnEntity(skeletonSpawnLocation, EntityType.ARMOR_STAND);
 
