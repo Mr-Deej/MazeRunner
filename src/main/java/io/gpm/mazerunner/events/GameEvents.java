@@ -168,6 +168,9 @@ public class GameEvents implements Listener {
                     EntitySpawner.setLocation(zombieSpawnLocation);
                     EntitySpawner.spawn();
 
+                    GameEndEvent endEvent = new GameEndEvent();
+
+
                     if(event.hasGotEnoughPoints()) {
                         event.setCancelled(true);
                         cancel();
@@ -175,10 +178,17 @@ public class GameEvents implements Listener {
                         skeletonNotifier.despawn();
 
                         //game win event
-                        GameEndEvent winEvent = new GameEndEvent();
-                        winEvent.killAllMobs(world);
-                        winEvent.teleport(winLocation);
-                        Bukkit.getServer().getPluginManager().callEvent(winEvent);
+                        endEvent.killAllMobs(world);
+                        endEvent.teleport(winLocation);
+                        Bukkit.getServer().getPluginManager().callEvent(endEvent);
+                    }
+
+                    if(loop.getLoopTime() == 0 && GameInformation.points.get() != GameInformation.MAX_POINTS) {
+                        endEvent.killAllMobs(world);
+                        endEvent.teleport(winLocation);
+
+                        Bukkit.getServer().getPluginManager().callEvent(endEvent);
+
                     }
 
                 }
