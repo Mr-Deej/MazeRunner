@@ -43,7 +43,7 @@ game:
   mob-repsawn-time: 10.5L
   # how many mobs spawn per respawn
   mob-count: 3
-  # where the players go once the game has finished and they've won
-  win-loc-x: 0
-  win-loc-y: 0
-  win-loc-z: 0
+  # where the players go once the game has finished
+  end-loc-x: 0
+  end-loc-y: 0
+  end-loc-z: 0
