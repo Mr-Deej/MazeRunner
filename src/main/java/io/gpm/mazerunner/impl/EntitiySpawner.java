@@ -1,5 +1,6 @@
 package io.gpm.mazerunner.impl;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 
@@ -19,7 +20,10 @@ public class EntitiySpawner {
         this.amount = amount;
     }
 
+    //this is a really bad way of doing it but fuck it
     public void spawn() {
-
+        for(int i = 0; i < amount + 1; ++i) {
+            Bukkit.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, type);
+        }
     }
 }
