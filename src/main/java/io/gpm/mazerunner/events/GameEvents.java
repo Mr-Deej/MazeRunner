@@ -122,6 +122,9 @@ public class GameEvents implements Listener {
 
         if(event.hasGameStarted()) {
 
+            zombieNotifier.spawn();
+            skeletonNotifier.spawn();
+
             //kill all entities in the world except players
             Bukkit.getServer().getWorld(world.getUID()).getEntities().forEach(e -> {
                 if(!(e instanceof Player))
