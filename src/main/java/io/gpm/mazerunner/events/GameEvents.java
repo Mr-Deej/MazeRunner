@@ -158,6 +158,8 @@ public class GameEvents implements Listener {
                     if(event.hasGotEnoughPoints()) {
                         event.setCancelled(true);
                         cancel();
+                        zombieNotifier.despawn();
+                        skeletonNotifier.despawn();
                     }
 
                 }
