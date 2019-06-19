@@ -1,5 +1,6 @@
 package io.gpm.mazerunner.events;
 
+import io.gpm.mazerunner.events.impl.GameWinEvent;
 import io.gpm.mazerunner.impl.EntityLocationNotifier;
 import io.gpm.mazerunner.impl.EntitySpawner;
 import io.gpm.mazerunner.utils.GameInformation;
@@ -168,7 +169,8 @@ public class GameEvents implements Listener {
                         skeletonNotifier.despawn();
 
                         //game win event
-
+                        GameWinEvent winEvent = new GameWinEvent();
+                        winEvent.killAllMobs(world);
                     }
 
                 }
