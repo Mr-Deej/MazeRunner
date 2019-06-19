@@ -116,6 +116,7 @@ public class GameEvents implements Listener {
                 MazeRunner.getInstance().getConfig().getInt("game.win-loc-y"),
                 MazeRunner.getInstance().getConfig().getInt("game.win-loc-z"));
 
+        //setup everything required for the armorstand notifiers for the mobs
         Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
         Entity skeletonStand = Bukkit.getWorld(world.getUID()).spawnEntity(skeletonSpawnLocation, EntityType.ARMOR_STAND);
 
@@ -123,10 +124,11 @@ public class GameEvents implements Listener {
         ItemStack zombieHead = new ItemStack(Material.SKULL_ITEM); //todo replace the head with a zombie head
         ItemStack skeletonHead = new ItemStack(Material.SKULL_ITEM); //this by default is a skeleton head - i think
 
+        //create the entity notifier
         EntityLocationNotifier zombieNotifier = new EntityLocationNotifier((ArmorStand) zombieStand, zombieSpawnLocation, "Zombies", zombieHead);
         EntityLocationNotifier skeletonNotifier = new EntityLocationNotifier((ArmorStand) skeletonStand, skeletonSpawnLocation, "Skeletons", skeletonHead);
 
-
+        //runs the event check - this is checked in the player join event for the amount of players
         if(event.hasGameStarted()) {
 
             zombieNotifier.spawn();
@@ -139,7 +141,6 @@ public class GameEvents implements Listener {
             });
 
             //player armor
-
             Bukkit.getServer().getWorld(world.getUID()).getPlayers().forEach(pl -> {
 
                 pl.getInventory().clear();
@@ -152,6 +153,7 @@ public class GameEvents implements Listener {
 
             });
 
+            //update the boss bar to signify how many points a player has
             BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
                     ChatColor.GREEN + "0" + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
             new BukkitRunnable() {
@@ -198,6 +200,7 @@ public class GameEvents implements Listener {
         }
     }
 
+    //gives back the armor and sword on death
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
@@ -210,7 +213,7 @@ public class GameEvents implements Listener {
         player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
         player.getInventory().setItemInHand(new ItemStack(Material.STONE_SWORD));
     }
-
+    //pretty obvious what is going on here
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         EntitySpawner.onDeath(event);
