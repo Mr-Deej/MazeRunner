@@ -7,26 +7,23 @@ import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /***
  * @author George
  * @since 19-Jun-19
  */
-public class EntitiySpawner {
+public class EntitySpawner {
 
     private static GameLoop loop = GameLoop.get();
     private static EntityType type;
-    private Location location;
-    private int amount;
+    private static Location location;
+    private static int amount;
 
-    public EntitiySpawner(EntityType type, Location location, int amount) {
-        type = type;
-        this.location = location;
-        this.amount = amount;
-    }
+    public EntitySpawner() { }
 
     //this is a really bad way of doing it but fuck it
-    public void spawn() {
+    public static void spawn() {
         for(int i = 0; i < amount + 1; ++i) {
             Bukkit.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, type);
         }
@@ -38,7 +35,12 @@ public class EntitiySpawner {
 
         if(event.getEntity().getType() == type && !(event.getEntity() instanceof Player)
             && !(loop.isGameEnded())) {
-
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    spawn();
+                }
+            }.runTaskTimer(MazeRunner.getInstance(), respawnDelay, 10L);
         }
     }
 }
