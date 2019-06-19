@@ -1,6 +1,5 @@
 package io.gpm.mazerunner.events.impl;
 
-import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.game.GameLoop;
 import io.gpm.mazerunner.utils.GameInformation;
 import org.bukkit.event.Cancellable;

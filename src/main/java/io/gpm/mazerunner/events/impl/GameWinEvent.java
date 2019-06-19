@@ -29,7 +29,11 @@ public class GameWinEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlers;
+    }
+
+    public HandlerList getHandlersList() {
+        return handlers;
     }
 
     public void teleport(Location location) {
