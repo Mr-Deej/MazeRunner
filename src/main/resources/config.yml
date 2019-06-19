@@ -1,24 +1,49 @@
+############################################
+# MAZE RUNNER                              #
+# The following config options             #
+# are required for the game to run         #
+# these must be set before the             #
+# game is ran on a server otherwise it     #
+# will bug out and likely kill all players #
+############################################
 game:
+  # the spawn location for players to be in before the
+  # game starts - world must be changed for the world
+  # name - it's recommended that this is done in a
+  # seperate world as the code kills all mobs that
+  # aren't players at the start
   pre-game-spawn-x: 100
   pre-game-spawn-y: 100
   pre-game-spawn-z: 100
   world: "World"
+  # how many players can actually play the game
   max-players: 6
+  # messages to notify players that the game is
+  # now starting
   starting-message: "&1Game is now starting!"
   teleport-message: "&4Teleporting players to start location"
+  # the teleport location for when the game starts
   start-loc-x: 0
   start-loc-y: 0
   start-loc-z: 0
+  # spawn location for the mobs that chase them
   zombie-spawn-loc-x: 0
   zombie-spawn-loc-y: 0
   zombie-spawn-loc-z: 0
-  skeleton-spawn-loc-x: 0
-  skeleton-spawn-loc-y: 0
-  skeleton-spawn-loc-z: 0
+  # max amount of points required for people to win
+  # the game
   required-points: 500
+  # the banker is the entity clicks in order to keep the
+  # points - all points are lost on death if they didn't
+  # bank them
   banker-name: "&b&lBanker!"
+  # how long the mobs take to respawn - must be a number
+  # in the long data type, aka as shown below. Remember
+  # this is done in ticks not seconds
   mob-repsawn-time: 10.5L
+  # how many mobs spawn per respawn
   mob-count: 3
+  # where the players go once the game has finished and they've won
   win-loc-x: 0
   win-loc-y: 0
   win-loc-z: 0
