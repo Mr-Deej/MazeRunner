@@ -12,6 +12,7 @@ import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -204,5 +205,10 @@ public class GameEvents implements Listener {
         player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
         player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
         player.getInventory().setItemInHand(new ItemStack(Material.STONE_SWORD));
+    }
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+        EntitySpawner.onDeath(event);
     }
 }
