@@ -112,9 +112,9 @@ public class GameEvents implements Listener {
                 MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-y"),
                 MazeRunner.getInstance().getConfig().getInt("game.zombie-spawn-loc-z"));
 
-        Location winLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.win-loc-x"),
-                MazeRunner.getInstance().getConfig().getInt("game.win-loc-y"),
-                MazeRunner.getInstance().getConfig().getInt("game.win-loc-z"));
+        Location endLocation = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.end-loc-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.end-loc-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.end-loc-z"));
 
         //setup everything required for the armorstand notifiers for the mobs
         Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
@@ -179,13 +179,13 @@ public class GameEvents implements Listener {
 
                         //game win event
                         endEvent.killAllMobs(world);
-                        endEvent.teleport(winLocation);
+                        endEvent.teleport(endLocation);
                         Bukkit.getServer().getPluginManager().callEvent(endEvent);
                     }
 
                     if(loop.getLoopTime() == 0 && GameInformation.points.get() != GameInformation.MAX_POINTS) {
                         endEvent.killAllMobs(world);
-                        endEvent.teleport(winLocation);
+                        endEvent.teleport(endLocation);
 
                         Bukkit.getServer().getPluginManager().callEvent(endEvent);
 
