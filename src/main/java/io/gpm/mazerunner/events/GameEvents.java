@@ -1,6 +1,7 @@
 package io.gpm.mazerunner.events;
 
 import io.gpm.mazerunner.impl.EntityLocationNotifier;
+import io.gpm.mazerunner.impl.EntitySpawner;
 import io.gpm.mazerunner.utils.GameInformation;
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.events.impl.GameRunEvent;
@@ -153,7 +154,9 @@ public class GameEvents implements Listener {
                     BossBar.updateEveryonesBar(ChatColor.RED + "Current points: " +
                             ChatColor.GREEN + GameInformation.points.get() + ChatColor.GRAY + "/" + ChatColor.GREEN + GameInformation.MAX_POINTS, 0);
 
-                    //spawn the zombies
+                    //spawn the zombies and skeleton
+                    EntitySpawner zombies = new EntitySpawner();
+
 
                     if(event.hasGotEnoughPoints()) {
                         event.setCancelled(true);

@@ -18,3 +18,4 @@ game:
   required-points: 500
   banker-name: "&b&lBanker!"
   mob-repsawn-time: 10.5L
+  mob-count: 3

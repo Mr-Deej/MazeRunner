@@ -43,4 +43,36 @@ public class EntitySpawner {
             }.runTaskTimer(MazeRunner.getInstance(), respawnDelay, 10L);
         }
     }
+
+    public static GameLoop getLoop() {
+        return loop;
+    }
+
+    public static void setLoop(GameLoop loop) {
+        EntitySpawner.loop = loop;
+    }
+
+    public static EntityType getType() {
+        return type;
+    }
+
+    public static void setType(EntityType type) {
+        EntitySpawner.type = type;
+    }
+
+    public static Location getLocation() {
+        return location;
+    }
+
+    public static void setLocation(Location location) {
+        EntitySpawner.location = location;
+    }
+
+    public static int getAmount() {
+        return amount;
+    }
+
+    public static void setAmount(int amount) {
+        EntitySpawner.amount = amount;
+    }
 }
