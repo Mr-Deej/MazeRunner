@@ -17,3 +17,4 @@ game:
   skeleton-spawn-loc-z: 0
   required-points: 500
   banker-name: "&b&lBanker!"
+  mob-repsawn-time: 10.5L

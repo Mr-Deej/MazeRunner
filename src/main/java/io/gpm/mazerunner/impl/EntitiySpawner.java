@@ -1,5 +1,6 @@
 package io.gpm.mazerunner.impl;
 
+import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.game.GameLoop;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,7 +14,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
  */
 public class EntitiySpawner {
 
-    private GameLoop loop = GameLoop.get();
+    private static GameLoop loop = GameLoop.get();
     private static EntityType type;
     private Location location;
     private int amount;
@@ -32,7 +33,11 @@ public class EntitiySpawner {
     }
 
     public static void onDeath(EntityDeathEvent event) {
-        if(event.getEntity().getType() == type && !(event.getEntity() instanceof Player)) {
+
+        long respawnDelay = MazeRunner.getInstance().getConfig().getLong("game.mob-respawn-time");
+
+        if(event.getEntity().getType() == type && !(event.getEntity() instanceof Player)
+            && !(loop.isGameEnded())) {
 
         }
     }
