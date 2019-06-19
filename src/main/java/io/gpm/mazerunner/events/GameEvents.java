@@ -177,6 +177,8 @@ public class GameEvents implements Listener {
                         //game win event
                         GameWinEvent winEvent = new GameWinEvent();
                         winEvent.killAllMobs(world);
+                        winEvent.teleport(winLocation);
+                        Bukkit.getServer().getPluginManager().callEvent(winEvent);
                     }
 
                 }
