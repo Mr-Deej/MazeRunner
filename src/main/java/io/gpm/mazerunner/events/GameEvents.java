@@ -160,6 +160,11 @@ public class GameEvents implements Listener {
                         cancel();
                         zombieNotifier.despawn();
                         skeletonNotifier.despawn();
+
+                        Bukkit.getServer().getWorld(world.getUID()).getEntities().forEach(e -> {
+                            if(!(e instanceof Player))
+                                e.remove();
+                        });
                     }
 
                 }
