@@ -12,7 +12,7 @@ import org.bukkit.event.HandlerList;
  * @author George
  * @since 19-Jun-19
  */
-public class GameWinEvent extends Event implements Cancellable {
+public class GameEndEvent extends Event implements Cancellable {
 
     private static HandlerList handlers = new HandlerList();
     private boolean cancelled = false;
