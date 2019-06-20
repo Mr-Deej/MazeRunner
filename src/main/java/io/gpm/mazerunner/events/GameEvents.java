@@ -166,6 +166,9 @@ public class GameEvents implements Listener {
                     EntitySpawner.setLocation(zombieSpawnLocation);
                     EntitySpawner.spawn();
 
+                    //spawn the items to gain points
+
+
                     GameEndEvent endEvent = new GameEndEvent();
 
                     //update the action bar for the time

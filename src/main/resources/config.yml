@@ -47,3 +47,13 @@ game:
   end-loc-x: 0
   end-loc-y: 0
   end-loc-z: 0
+  # where all of the points will spawn
+  iron-spawn-x: 0
+  iron-spawn-y: 0
+  iron-spawn-z: 0
+  coal-spawn-x: 0
+  coal-spawn-y: 0
+  coal-spawn-z: 0
+  diamond-spawn-x: 0
+  diamond-spawn-y: 0
+  diamond-spawn-z: 0
