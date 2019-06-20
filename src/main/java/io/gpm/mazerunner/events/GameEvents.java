@@ -195,12 +195,13 @@ public class GameEvents implements Listener {
                     ironSpawner.spawn();
 
 
-                    GameEndEvent endEvent = new GameEndEvent();
 
                     //update the action bar for the time
                     int time = loop.getLoopTime();
                     ActionBar.sendToAll(TimeUtils.convertTime(time));
 
+                    //only called when one of the below is valid
+                    GameEndEvent endEvent = new GameEndEvent();
 
                     if(event.hasGotEnoughPoints()) {
                         event.setCancelled(true);
