@@ -3,6 +3,7 @@ package io.gpm.mazerunner.events;
 import io.gpm.mazerunner.events.impl.GameEndEvent;
 import io.gpm.mazerunner.impl.EntityLocationNotifier;
 import io.gpm.mazerunner.impl.EntitySpawner;
+import io.gpm.mazerunner.impl.ItemSpawner;
 import io.gpm.mazerunner.utils.*;
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.events.impl.GameRunEvent;
@@ -180,6 +181,14 @@ public class GameEvents implements Listener {
                     EntitySpawner.spawn();
 
                     //spawn the items to gain points
+                    ItemSpawner diamondSpawner = new ItemSpawner(diamond, new ItemStack(Material.DIAMOND), 0, 0);
+                    diamondSpawner.spawn();
+
+                    ItemSpawner coalSpawner = new ItemSpawner(coal, new ItemStack(Material.COAL), 0, 0);
+                    coalSpawner.spawn();
+
+                    ItemSpawner ironSpawner = new ItemSpawner(iron, new ItemStack(Material.IRON_INGOT), 0, 0);
+                    ironSpawner.spawn();
 
 
                     GameEndEvent endEvent = new GameEndEvent();

@@ -18,8 +18,7 @@ public class ItemSpawner {
     private ItemStack item;
     private long period, delay;
 
-    public ItemSpawner(GameLoop loop, Location location, ItemStack item, long period, long delay) {
-        this.loop = loop;
+    public ItemSpawner(Location location, ItemStack item, long period, long delay) {
         this.location = location;
         this.item = item;
         this.period = period;
