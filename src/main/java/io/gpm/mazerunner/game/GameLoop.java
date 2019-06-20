@@ -62,7 +62,7 @@ public class GameLoop {
         return delay;
     }
 
-    public boolean isStarted() {
+    public boolean hasStarted() {
         return started;
     }
 

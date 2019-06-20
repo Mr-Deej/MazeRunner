@@ -17,7 +17,7 @@ public class GameRunEvent extends Event implements Cancellable {
     private GameLoop loop = GameLoop.get();
 
     public boolean hasGameStarted() {
-        return loop.isStarted();
+        return loop.hasStarted();
     }
 
     public boolean hasEnded() {
