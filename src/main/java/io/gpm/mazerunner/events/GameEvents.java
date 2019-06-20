@@ -114,6 +114,19 @@ public class GameEvents implements Listener {
                 MazeRunner.getInstance().getConfig().getInt("game.end-loc-y"),
                 MazeRunner.getInstance().getConfig().getInt("game.end-loc-z"));
 
+        //spawn location for the points
+        Location diamond = new Location(world, MazeRunner.getInstance().getConfig().getInt("diamond-spawn-x"),
+                MazeRunner.getInstance().getConfig().getInt("diamond-spawn-y"),
+                MazeRunner.getInstance().getConfig().getInt("diamond-spawn-z"));
+
+        Location iron = new Location(world, MazeRunner.getInstance().getConfig().getInt("iron-spawn-x"),
+                MazeRunner.getInstance().getConfig().getInt("iron-spawn-y"),
+                MazeRunner.getInstance().getConfig().getInt("iron-spawn-z"));
+
+        Location coal = new Location(world, MazeRunner.getInstance().getConfig().getInt("coal-spawn-x"),
+                MazeRunner.getInstance().getConfig().getInt("coal-spawn-y"),
+                MazeRunner.getInstance().getConfig().getInt("coal-spawn-z"));
+
         //setup everything required for the armorstand notifiers for the mobs
         Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
         Entity skeletonStand = Bukkit.getWorld(world.getUID()).spawnEntity(skeletonSpawnLocation, EntityType.ARMOR_STAND);
