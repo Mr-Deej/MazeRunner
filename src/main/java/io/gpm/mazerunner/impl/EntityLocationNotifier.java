@@ -14,6 +14,15 @@ import org.bukkit.inventory.ItemStack;
  */
 public class EntityLocationNotifier {
 
+    /*
+    EntityLocationNotifier
+    this provides an armorstand that floats and spins in the
+    air - the purpose of this is to notify players where a
+    certain location is, in this game it is normally the spawn
+    of the mobs that chase them and the location of the
+    ores that give them points
+     */
+
     private GameLoop loop = GameLoop.get();
 
     private ArmorStand stand;
