@@ -5,6 +5,7 @@ package io.gpm.mazerunner.utils;
  * @since 20-Jun-19
  */
 public class ChatIcons {
+
     public static final String DARK_STAR = "★";
     public static final String WHITE_STAR = "☆";
     public static final String CIRCLE_BLANK_STAR = "✪";
