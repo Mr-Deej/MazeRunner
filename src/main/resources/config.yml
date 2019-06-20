@@ -57,3 +57,7 @@ game:
   diamond-spawn-x: 0
   diamond-spawn-y: 0
   diamond-spawn-z: 0
+  # how long it takes for it one of the to spawn
+  diamond-delay: 10L
+  coal-delay: 3L
+  iron-delay: 6L
