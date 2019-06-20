@@ -185,13 +185,13 @@ public class GameEvents implements Listener {
                             diamondDelay = MazeRunner.getInstance().getConfig().getLong("game.diamond-delay");
 
                     //spawn the items to gain points
-                    ItemSpawner diamondSpawner = new ItemSpawner(diamond, new ItemStack(Material.DIAMOND), 0, 0);
+                    ItemSpawner diamondSpawner = new ItemSpawner(diamond, new ItemStack(Material.DIAMOND), 0, diamondDelay);
                     diamondSpawner.spawn();
 
-                    ItemSpawner coalSpawner = new ItemSpawner(coal, new ItemStack(Material.COAL), 0, 0);
+                    ItemSpawner coalSpawner = new ItemSpawner(coal, new ItemStack(Material.COAL), 0, coalDelay);
                     coalSpawner.spawn();
 
-                    ItemSpawner ironSpawner = new ItemSpawner(iron, new ItemStack(Material.IRON_INGOT), 0, 0);
+                    ItemSpawner ironSpawner = new ItemSpawner(iron, new ItemStack(Material.IRON_INGOT), 0, ironDelay);
                     ironSpawner.spawn();
 
 
