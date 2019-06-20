@@ -14,12 +14,12 @@ public class ActionBar {
 
     private static PacketPlayOutChat packet;
 
-    public static void sendToPlayer(String text, Player player) {
+    private static void sendToPlayer(String text, Player player) {
         packet = new PacketPlayOutChat(IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + text + "\"}"), (byte) 2);
         (((CraftPlayer)player).getHandle()).playerConnection.sendPacket(packet);
     }
 
-    public void sendToAll(String text) {
+    public static void sendToAll(String text) {
         Bukkit.getOnlinePlayers().forEach(pl -> sendToPlayer(text, pl));
     }
 }

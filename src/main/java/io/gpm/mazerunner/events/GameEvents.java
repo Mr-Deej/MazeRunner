@@ -3,12 +3,10 @@ package io.gpm.mazerunner.events;
 import io.gpm.mazerunner.events.impl.GameEndEvent;
 import io.gpm.mazerunner.impl.EntityLocationNotifier;
 import io.gpm.mazerunner.impl.EntitySpawner;
-import io.gpm.mazerunner.utils.GameInformation;
+import io.gpm.mazerunner.utils.*;
 import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.events.impl.GameRunEvent;
 import io.gpm.mazerunner.game.GameLoop;
-import io.gpm.mazerunner.utils.AnimatedTitle;
-import io.gpm.mazerunner.utils.BossBar;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -169,6 +167,10 @@ public class GameEvents implements Listener {
                     EntitySpawner.spawn();
 
                     GameEndEvent endEvent = new GameEndEvent();
+
+                    //update the action bar for the time
+                    int time = loop.getLoopTime();
+                    ActionBar.sendToAll(TimeUtils.convertTime(time));
 
 
                     if(event.hasGotEnoughPoints()) {
