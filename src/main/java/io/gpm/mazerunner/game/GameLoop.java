@@ -74,7 +74,7 @@ public class GameLoop {
         return runnable;
     }
 
-    public boolean isGameEnded() {
+    public boolean hasFinished() {
         return gameEnded;
     }
 

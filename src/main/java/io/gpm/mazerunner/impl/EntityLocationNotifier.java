@@ -3,7 +3,6 @@ package io.gpm.mazerunner.impl;
 import io.gpm.mazerunner.game.GameLoop;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
@@ -55,7 +54,7 @@ public class EntityLocationNotifier {
     }
 
     public void despawn() {
-        if(loop.isGameEnded())
+        if(loop.hasFinished())
             stand.remove();
     }
 }

@@ -21,7 +21,7 @@ public class GameRunEvent extends Event implements Cancellable {
     }
 
     public boolean hasEnded() {
-        return loop.isGameEnded();
+        return loop.hasFinished();
     }
 
     public boolean hasGotEnoughPoints() {

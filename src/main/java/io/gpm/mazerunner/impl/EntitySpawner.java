@@ -34,7 +34,7 @@ public class EntitySpawner {
         long respawnDelay = MazeRunner.getInstance().getConfig().getLong("game.mob-respawn-time");
 
         if(event.getEntity().getType() == type && !(event.getEntity() instanceof Player)
-            && !(loop.isGameEnded())) {
+            && !(loop.hasFinished())) {
             new BukkitRunnable() {
                 @Override
                 public void run() {

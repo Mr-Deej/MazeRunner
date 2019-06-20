@@ -31,7 +31,7 @@ public class ItemSpawner {
             @Override
             public void run() {
                 Bukkit.getWorld(location.getWorld().getUID()).dropItemNaturally(location, item);
-                if(loop.isGameEnded())
+                if(loop.hasFinished())
                     cancel();
             }
         }.runTaskTimer(MazeRunner.getInstance(), delay, period);
