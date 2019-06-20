@@ -189,6 +189,16 @@ public class GameEvents implements Listener {
 
                         Bukkit.getServer().getPluginManager().callEvent(endEvent);
 
+                        //end title
+                        List<String> endTitle = Arrays.asList(
+                                ChatColor.RED + "You Lost!",
+                                ChatColor.DARK_RED + "You Lost!",
+                                ChatColor.RED + "You Lost!",
+                                ChatColor.DARK_RED + "You Lost!"
+                        );
+                        List<String> endSubtitle = Arrays.asList(); //nothing will be here
+
+                        new AnimatedTitle(endTitle, endSubtitle, 0, 10, 0, 0, 10).sendToAll();
                     }
 
                 }
