@@ -116,17 +116,17 @@ public class GameEvents implements Listener {
                 MazeRunner.getInstance().getConfig().getInt("game.end-loc-z"));
 
         //spawn location for the points
-        Location diamond = new Location(world, MazeRunner.getInstance().getConfig().getInt("diamond-spawn-x"),
-                MazeRunner.getInstance().getConfig().getInt("diamond-spawn-y"),
-                MazeRunner.getInstance().getConfig().getInt("diamond-spawn-z"));
+        Location diamond = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.diamond-spawn-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.diamond-spawn-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.diamond-spawn-z"));
 
-        Location iron = new Location(world, MazeRunner.getInstance().getConfig().getInt("iron-spawn-x"),
-                MazeRunner.getInstance().getConfig().getInt("iron-spawn-y"),
-                MazeRunner.getInstance().getConfig().getInt("iron-spawn-z"));
+        Location iron = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.iron-spawn-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.iron-spawn-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.iron-spawn-z"));
 
-        Location coal = new Location(world, MazeRunner.getInstance().getConfig().getInt("coal-spawn-x"),
-                MazeRunner.getInstance().getConfig().getInt("coal-spawn-y"),
-                MazeRunner.getInstance().getConfig().getInt("coal-spawn-z"));
+        Location coal = new Location(world, MazeRunner.getInstance().getConfig().getInt("game.coal-spawn-x"),
+                MazeRunner.getInstance().getConfig().getInt("game.coal-spawn-y"),
+                MazeRunner.getInstance().getConfig().getInt("game.coal-spawn-z"));
 
         //setup everything required for the armorstand notifiers for the mobs
         Entity zombieStand = Bukkit.getWorld(world.getUID()).spawnEntity(zombieSpawnLocation, EntityType.ARMOR_STAND);
@@ -179,6 +179,10 @@ public class GameEvents implements Listener {
                     EntitySpawner.setType(EntityType.ZOMBIE);
                     EntitySpawner.setLocation(zombieSpawnLocation);
                     EntitySpawner.spawn();
+
+                    long coalDelay = MazeRunner.getInstance().getConfig().getLong("game.coal-delay"),
+                            ironDelay = MazeRunner.getInstance().getConfig().getLong("game.iron-delay"),
+                            diamondDelay = MazeRunner.getInstance().getConfig().getLong("game.diamond-delay");
 
                     //spawn the items to gain points
                     ItemSpawner diamondSpawner = new ItemSpawner(diamond, new ItemStack(Material.DIAMOND), 0, 0);
