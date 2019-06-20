@@ -1,8 +1,11 @@
 package io.gpm.mazerunner.impl;
 
+import io.gpm.mazerunner.MazeRunner;
 import io.gpm.mazerunner.game.GameLoop;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /***
  * @author George
@@ -23,5 +26,12 @@ public class ItemSpawner {
         this.delay = delay;
     }
 
-
+    public void spawn() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Bukkit.getWorld(location.getWorld().getUID()).dropItemNaturally(location, item);
+            }
+        }.runTaskTimer(MazeRunner.getInstance(), delay, period);
+    }
 }
