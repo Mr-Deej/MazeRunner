@@ -182,13 +182,14 @@ public class GameEvents implements Listener {
                         //game win event
                         endEvent.killAllMobs(world);
                         endEvent.teleport(endLocation);
+                        ActionBar.killPacket();
                         Bukkit.getServer().getPluginManager().callEvent(endEvent);
                     }
 
                     if(loop.getLoopTime() == 0 && GameInformation.points.get() != GameInformation.MAX_POINTS) {
                         endEvent.killAllMobs(world);
                         endEvent.teleport(endLocation);
-
+                        ActionBar.killPacket();
                         Bukkit.getServer().getPluginManager().callEvent(endEvent);
 
                         //end title

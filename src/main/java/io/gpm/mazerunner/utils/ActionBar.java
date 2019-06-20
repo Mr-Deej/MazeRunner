@@ -22,4 +22,8 @@ public class ActionBar {
     public static void sendToAll(String text) {
         Bukkit.getOnlinePlayers().forEach(pl -> sendToPlayer(text, pl));
     }
+
+    public static void killPacket() {
+        packet = null;
+    }
 }
